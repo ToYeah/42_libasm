@@ -17,5 +17,5 @@ ft_strdup:
     call ft_strcpy
     ret
 
-.error
+.error:
     ret
