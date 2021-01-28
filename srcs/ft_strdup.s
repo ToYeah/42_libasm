@@ -6,15 +6,15 @@ section .text
 section .data
 ft_strdup: 
     push rdi
-    call ft_strlen
-    mov rdi, rax
-    inc rdi
-    mov rax, 1
-    call malloc wrt ..plt
+    call ft_strlen; rax = ftstrlen(rdi)
+    mov rdi, rax; rdi = rax
+    inc rdi; rdi++
+    call malloc wrt ..plt; rax = malloc(rdi)
+    pop rsi; rsi = s
     cmp rax, 0
-    pop rsi
-    mov rdi, rax
-    call ft_strcpy
+    je .error; if(rax == NULL)
+    mov rdi, rax; rdi = rax
+    call ft_strcpy; ft_strcpy(rdi, rsi)
     ret
 
 .error:

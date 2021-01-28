@@ -5,17 +5,18 @@ extern __errno_location
 section .data
 ft_write:
 
-    xor rax, rax
-    mov rax, 1
+    xor rax, rax; rax = 0
+    mov rax, 1; rax = 1(syscall write = 1)
     syscall
     cmp rax, 0
-    jl .error
+    jl .error; if(rax < 0)
     ret
 
 .error:
-    mov rdx, rax
-    call __errno_location wrt ..plt
-    neg rdx
-    mov [rax], rdx
-    mov rax, -1
+    neg rax; rax *= -1
+    push rax
+    call __errno_location wrt ..plt; rax = errno address
+    pop qword[rax]; *errno address = errno
+    xor rax, rax; rax = 0
+    sub eax, 1; eax--
     ret
