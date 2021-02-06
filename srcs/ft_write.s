@@ -4,8 +4,6 @@ extern __errno_location
 
 section .data
 ft_write:
-
-    xor rax, rax; rax = 0
     mov rax, 1; rax = 1(syscall write = 1)
     syscall
     cmp rax, 0
@@ -17,6 +15,5 @@ ft_write:
     push rax
     call __errno_location wrt ..plt; rax = errno address
     pop qword[rax]; *errno address = errno
-    xor rax, rax; rax = 0
-    sub eax, 1; eax--
+    mov rax, -1; rax = -1
     ret
