@@ -24,12 +24,5 @@ ft_strcmp:
     mov al, byte [rdi + rcx]; dil = s1[rcx]
     xor rdi, rdi
     mov dil, byte [rsi + rcx]; sil = s2[rcx]
-    cmp al, dil
-    jb .end_smaller; if(dil < sil)
-.end_bigger:
-    sub rax, rdi
-    ret
-
-.end_smaller:
-    sub rax, rdi
+    sub eax, edi
     ret
