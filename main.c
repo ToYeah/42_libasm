@@ -141,7 +141,6 @@ void test_ft_write()
 
 	res = write(fd, s1, 11);
 	printf("%ld\n",res);
-
 }
 
 int main()
